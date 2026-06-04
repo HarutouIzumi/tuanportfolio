@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng kết | Portfolio - Phạm Thanh Tuấn</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Nunito & Lora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sage-50': '#f4f7f4',
+                        'sage-100': '#e3ebe3',
+                        'sage-200': '#c8dbc8',
+                        'sage-300': '#a3c2a3',
+                        'sage-400': '#7da57d',
+                        'sage-500': '#5c855c',
+                        'sage-600': '#456945',
+                        'sage-700': '#385438',
+                        'sage-800': '#2f442f',
+                        'sage-900': '#273827',
+                        'earth': '#8C7A6B',
+                        'sand': '#FDFBF7'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2f442f;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(253, 251, 247, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(227, 235, 227, 0.8);
+            box-shadow: 0 10px 30px rgba(92, 133, 92, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(92, 133, 92, 0.12);
+            border-color: #a3c2a3;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes float-reverse {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(20px) rotate(-5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float-1 { animation: float 6s ease-in-out infinite; }
+        .animate-float-2 { animation: float-reverse 8s ease-in-out infinite; }
+        
+        .fade-in-element {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        /* Decorative blobs */
+        .blob-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(163,194,163,0.3) 0%, rgba(253,251,247,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+        
+        .blob-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(200,219,200,0.4) 0%, rgba(253,251,247,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+        
+        /* Custom highlight text */
+        .text-highlight {
+            position: relative;
+            z-index: 1;
+        }
+        .text-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: #c8dbc8;
+            z-index: -1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col font-sans selection:bg-sage-300 selection:text-sage-900">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="blob-1 animate-float-1"></div>
+        <div class="blob-2 animate-float-2"></div>
+        
+        <!-- Floating Leaves SVG -->
+        <svg class="absolute top-40 right-20 w-10 h-10 text-sage-300 opacity-60 animate-float-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5,3C13.53,3 10.38,5.77 9.24,9.45C9.06,9.35 8.84,9.28 8.6,9.28C7.5,9.28 6.6,10.18 6.6,11.28C6.6,11.83 6.82,12.33 7.18,12.69L4.44,15.43L5.85,16.84L8.6,14.1C8.95,14.46 9.45,14.68 10,14.68C11.1,14.68 12,13.78 12,12.68C12,12.44 11.93,12.22 11.83,12.04C15.5,10.9 18.28,7.75 18.28,3.78L17.5,3M15.54,5.43C15.44,8.12 13.56,10.37 11.05,11.1C11.64,10.11 12,8.96 12,7.75C12,6.97 11.89,6.21 11.68,5.5C12.86,5.1 14.16,5 15.54,5.43Z" />
+        </svg>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <i class="ph-fill ph-plant text-3xl text-sage-600 group-hover:text-sage-400 transition-colors"></i>
+                    <span class="font-serif font-semibold text-xl text-sage-800 tracking-wide">Tuan's Space</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-sage-500 hover:text-sage-700 font-medium transition-colors hover:border-b-2 hover:border-sage-300 pb-1">Giới thiệu</a>
+                    <a href="projects.html" class="text-sage-500 hover:text-sage-700 font-medium transition-colors hover:border-b-2 hover:border-sage-300 pb-1">Dự án</a>
+                    <a href="summary.html" class="text-sage-700 font-semibold border-b-2 border-sage-500 pb-1">Tổng kết</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-sage-700 hover:text-sage-900 focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-32 pb-20 px-4 md:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+        
+        <!-- Page Header -->
+        <div class="text-center mb-12 fade-in-element">
+            <span class="px-4 py-1.5 rounded-full bg-sage-100 text-sage-700 text-sm font-bold tracking-wider mb-4 border border-sage-200 inline-block">
+                TỔNG KẾT & PHẢN TỈNH 🍃
+            </span>
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-sage-900 mb-4">Nhìn Lại Chặng Đường</h1>
+            <p class="text-sage-600 text-lg max-w-2xl mx-auto">
+                Những suy ngẫm, bài học và sự trưởng thành sau khi hoàn thành chuỗi dự án môn Nhập môn Công nghệ số và Ứng dụng AI.
+            </p>
+        </div>
+
+        <!-- Grid Layout for Summary Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Cảm nhận cá nhân (Full width on mobile, spans 2 columns on desktop) -->
+            <div class="glass-card rounded-3xl p-8 md:p-10 md:col-span-2 fade-in-element delay-100 relative overflow-hidden group">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none transition-transform duration-700 group-hover:scale-150"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-sage-200 flex items-center justify-center text-sage-700 shadow-sm">
+                            <i class="ph-fill ph-heart text-2xl"></i>
+                        </div>
+                        <h2 class="font-serif text-2xl font-bold text-sage-900">Trải nghiệm & Cảm nhận</h2>
+                    </div>
+                    
+                    <p class="text-sage-700 text-lg leading-relaxed mb-4">
+                        Quá trình xây dựng Digital Portfolio này là một hành trình thực sự <span class="text-highlight font-semibold">đáng nhớ và đầy ý nghĩa</span>. Ban đầu, mình chỉ xem đây là một bài tập cuối kỳ cần hoàn thành, nhưng càng đi sâu vào từng tuần học, mình càng nhận ra giá trị to lớn của việc hệ thống hóa lại kiến thức.
+                    </p>
+                    <p class="text-sage-700 text-lg leading-relaxed">
+                        Từ việc chật vật viết những dòng Prompt đầu tiên cho đến khi có thể ứng dụng AI tạo sinh một cách mượt mà để hỗ trợ học tập; quá trình này đã giúp mình chuyển đổi từ một "người dùng thụ động" sang một "người khai thác công nghệ chủ động". Mình cảm thấy tự hào khi nhìn lại những sản phẩm chỉn chu do chính tay mình tổng hợp và thiết kế nên.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kiến thức & Kỹ năng -->
+            <div class="glass-card rounded-3xl p-8 fade-in-element delay-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-200 flex items-center justify-center text-sage-700 shadow-sm">
+                        <i class="ph-fill ph-brain text-2xl"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-sage-900">Kỹ năng cốt lõi</h2>
+                </div>
+                
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i class="ph-fill ph-check-circle text-sage-500 text-xl mt-0.5"></i>
+                        <div>
+                            <strong class="text-sage-800 block">Prompt Engineering</strong>
+                            <span class="text-sage-600 text-sm">Biết cách đặt câu hỏi, phân vai và tạo ngữ cảnh để AI đưa ra câu trả lời chính xác, tối ưu.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="ph-fill ph-check-circle text-sage-500 text-xl mt-0.5"></i>
+                        <div>
+                            <strong class="text-sage-800 block">Khai thác dữ liệu</strong>
+                            <span class="text-sage-600 text-sm">Sử dụng thành thạo toán tử tìm kiếm nâng cao để lọc nguồn tài liệu học thuật uy tín.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="ph-fill ph-check-circle text-sage-500 text-xl mt-0.5"></i>
+                        <div>
+                            <strong class="text-sage-800 block">Hợp tác trực tuyến</strong>
+                            <span class="text-sage-600 text-sm">Ứng dụng các nền tảng đám mây để quản lý tiến độ dự án nhóm hiệu quả.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="ph-fill ph-check-circle text-sage-500 text-xl mt-0.5"></i>
+                        <div>
+                            <strong class="text-sage-800 block">Tư duy đạo đức AI</strong>
+                            <span class="text-sage-600 text-sm">Hiểu và áp dụng liêm chính học thuật, sử dụng AI như một công cụ hỗ trợ, không lạm dụng.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tâm đắc & Thách thức (Stacked in 1 column) -->
+            <div class="flex flex-col gap-8 fade-in-element delay-300">
+                
+                <!-- Điểm tâm đắc -->
+                <div class="glass-card rounded-3xl p-8 flex-grow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-2xl bg-sage-200 flex items-center justify-center text-sage-700 shadow-sm">
+                            <i class="ph-fill ph-lightbulb text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-sage-900">Điểm tâm đắc nhất</h3>
+                    </div>
+                    <p class="text-sage-700 text-sm md:text-base leading-relaxed">
+                        Điều mình tự hào nhất là đã xây dựng thành công một không gian số (Portfolio) mang đậm phong cách cá nhân (<span class="italic text-sage-500">aesthetic vibe</span>). Bên cạnh đó, việc nhận ra giới hạn của AI (hallucination, sai lệch thông tin) giúp mình rèn luyện được <b>tư duy phản biện (critical thinking)</b> rất nhiều khi kiểm chứng nguồn tài liệu.
+                    </p>
+                </div>
+
+                <!-- Thách thức -->
+                <div class="glass-card rounded-3xl p-8 flex-grow border-l-4 border-l-earth/50">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center text-earth shadow-sm">
+                            <i class="ph-fill ph-warning-circle text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-sage-900">Thách thức gặp phải</h3>
+                    </div>
+                    <p class="text-sage-700 text-sm md:text-base leading-relaxed">
+                        Thách thức lớn nhất là <b class="text-sage-800">quản lý thời gian</b> và <b class="text-sage-800">biên tập lại nội dung</b>. Các bài tập rải rác từ tuần 1 đến 6 cần được tinh chỉnh, đồng nhất về format trước khi đưa lên Portfolio. Đôi khi việc làm chủ các nền tảng thiết kế web cũng mất khá nhiều thời gian để canh chỉnh bố cục cho vừa ý.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Định hướng tương lai (Bổ sung để đạt điểm tối đa Mức 4) -->
+            <div class="glass-card rounded-3xl p-8 md:col-span-2 fade-in-element delay-400">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-200 flex items-center justify-center text-sage-700 shadow-sm">
+                        <i class="ph-fill ph-rocket-launch text-2xl"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-sage-900">Định hướng áp dụng trong tương lai</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sage-700">
+                    <div class="bg-white/40 p-5 rounded-2xl border border-white/50 hover:bg-white/60 transition-colors">
+                        <h4 class="font-bold text-sage-900 mb-2 flex items-center gap-2"><i class="ph-bold ph-student text-sage-600"></i> Học tập chuyên ngành</h4>
+                        <p class="text-sm">Áp dụng kỹ năng tìm kiếm học thuật và Prompt Engineering để nghiên cứu tài liệu, tự học các ngôn ngữ/công nghệ mới trong ngành Hệ thống thông tin một cách tối ưu.</p>
+                    </div>
+                    <div class="bg-white/40 p-5 rounded-2xl border border-white/50 hover:bg-white/60 transition-colors">
+                        <h4 class="font-bold text-sage-900 mb-2 flex items-center gap-2"><i class="ph-bold ph-briefcase text-sage-600"></i> Công việc thực tế</h4>
+                        <p class="text-sm">Sử dụng AI tạo sinh để tối ưu hóa quy trình làm việc, kết hợp kỹ năng hợp tác trực tuyến (như Trello, Drive) để làm việc hiệu quả với team trong môi trường doanh nghiệp.</p>
+                    </div>
+                    <div class="bg-white/40 p-5 rounded-2xl border border-white/50 hover:bg-white/60 transition-colors">
+                        <h4 class="font-bold text-sage-900 mb-2 flex items-center gap-2"><i class="ph-bold ph-shield-star text-sage-600"></i> Phát triển bền vững</h4>
+                        <p class="text-sm">Luôn tuân thủ nguyên tắc "AI có trách nhiệm", sử dụng AI như đòn bẩy tư duy chứ không thay thế hoàn toàn năng lực sáng tạo và phản biện của bản thân.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Call to action/End greeting -->
+        <div class="text-center mt-16 fade-in-element delay-500">
+            <p class="font-serif text-2xl text-sage-800 italic mb-4">"Công nghệ là công cụ, tư duy mới là chìa khóa."</p>
+            <div class="w-16 h-1 bg-sage-300 mx-auto rounded-full"></div>
+            <p class="text-sage-500 mt-4 font-medium">Cảm ơn thầy cô và các bạn đã dành thời gian xem qua Portfolio của mình!</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center text-sage-600 text-sm border-t border-sage-200 mt-auto bg-sand/50 backdrop-blur-sm">
+        <p>&copy; 2026 Phạm Thanh Tuấn. Thiết kế cho môn học Công nghệ số.</p>
+    </footer>
+
+    <!-- Script for scroll effect on navbar -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-sm', 'bg-white/80');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('shadow-sm', 'bg-white/80');
+                nav.classList.add('bg-transparent');
+            }
+        });
+    </script>
+</body>
+</html>

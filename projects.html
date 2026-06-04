@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án | Portfolio - Phạm Thanh Tuấn</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Nunito & Lora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sage-50': '#f4f7f4',
+                        'sage-100': '#e3ebe3',
+                        'sage-200': '#c8dbc8',
+                        'sage-300': '#a3c2a3',
+                        'sage-400': '#7da57d',
+                        'sage-500': '#5c855c',
+                        'sage-600': '#456945',
+                        'sage-700': '#385438',
+                        'sage-800': '#2f442f',
+                        'sage-900': '#273827',
+                        'earth': '#8C7A6B',
+                        'sand': '#FDFBF7'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2f442f;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(253, 251, 247, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(227, 235, 227, 0.8);
+            box-shadow: 0 10px 30px rgba(92, 133, 92, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(92, 133, 92, 0.15);
+            border-color: #a3c2a3;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes float-reverse {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(20px) rotate(-5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-float-1 { animation: float 6s ease-in-out infinite; }
+        .animate-float-2 { animation: float-reverse 8s ease-in-out infinite; }
+        
+        .fade-in-element {
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        /* Decorative background blobs */
+        .blob-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(163,194,163,0.3) 0%, rgba(253,251,247,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+        
+        .blob-2 {
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(200,219,200,0.4) 0%, rgba(253,251,247,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        /* Ẩn thanh cuộn cho menu tab trên mobile */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col font-sans selection:bg-sage-300 selection:text-sage-900">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="blob-1 animate-float-1"></div>
+        <div class="blob-2 animate-float-2"></div>
+        
+        <!-- Floating Leaves SVG -->
+        <svg class="absolute top-32 left-10 w-12 h-12 text-sage-300 opacity-60 animate-float-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5,3C13.53,3 10.38,5.77 9.24,9.45C9.06,9.35 8.84,9.28 8.6,9.28C7.5,9.28 6.6,10.18 6.6,11.28C6.6,11.83 6.82,12.33 7.18,12.69L4.44,15.43L5.85,16.84L8.6,14.1C8.95,14.46 9.45,14.68 10,14.68C11.1,14.68 12,13.78 12,12.68C12,12.44 11.93,12.22 11.83,12.04C15.5,10.9 18.28,7.75 18.28,3.78L17.5,3M15.54,5.43C15.44,8.12 13.56,10.37 11.05,11.1C11.64,10.11 12,8.96 12,7.75C12,6.97 11.89,6.21 11.68,5.5C12.86,5.1 14.16,5 15.54,5.43Z" />
+        </svg>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <i class="ph-fill ph-plant text-3xl text-sage-600 group-hover:text-sage-400 transition-colors"></i>
+                    <span class="font-serif font-semibold text-xl text-sage-800 tracking-wide">Tuan's Space</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-sage-500 hover:text-sage-700 font-medium transition-colors hover:border-b-2 hover:border-sage-300 pb-1">Giới thiệu</a>
+                    <a href="projects.html" class="text-sage-700 font-semibold border-b-2 border-sage-500 pb-1">Dự án</a>
+                    <a href="#" class="text-sage-500 hover:text-sage-700 font-medium transition-colors hover:border-b-2 hover:border-sage-300 pb-1">Tổng kết</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-sage-700 hover:text-sage-900 focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-32 pb-20 px-4 md:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+        
+        <!-- Page Header -->
+        <div class="text-center mb-10 fade-in-element">
+            <span class="px-4 py-1.5 rounded-full bg-sage-100 text-sage-700 text-sm font-bold tracking-wider mb-4 border border-sage-200 inline-block">
+                HÀNH TRÌNH HỌC TẬP 🌿
+            </span>
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-sage-900 mb-4">Các Dự Án Thành Phần</h1>
+            <p class="text-sage-600 text-lg max-w-2xl mx-auto">
+                Chọn từng tuần để xem chi tiết kết quả thực hành.
+            </p>
+        </div>
+
+        <!-- TAB NAVIGATION (Thanh điều hướng bé) -->
+        <div class="flex overflow-x-auto hide-scrollbar gap-3 justify-start md:justify-center mb-8 pb-4 fade-in-element" style="animation-delay: 0.1s;">
+            <button id="btn-week-1" onclick="switchTab('week-1')" class="tab-btn shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-sage-600 text-white shadow-md scale-105">
+                Tuần 1
+            </button>
+            <button id="btn-week-2" onclick="switchTab('week-2')" class="tab-btn shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-sage-100 text-sage-700 hover:bg-sage-200">
+                Tuần 2
+            </button>
+            <button id="btn-week-3" onclick="switchTab('week-3')" class="tab-btn shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-sage-100 text-sage-700 hover:bg-sage-200">
+                Tuần 3
+            </button>
+            <button id="btn-week-4" onclick="switchTab('week-4')" class="tab-btn shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-sage-100 text-sage-700 hover:bg-sage-200">
+                Tuần 4
+            </button>
+            <button id="btn-week-5" onclick="switchTab('week-5')" class="tab-btn shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-sage-100 text-sage-700 hover:bg-sage-200">
+                Tuần 5
+            </button>
+            <button id="btn-week-6" onclick="switchTab('week-6')" class="tab-btn shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-sage-100 text-sage-700 hover:bg-sage-200">
+                Tuần 6
+            </button>
+            <button id="btn-week-7" onclick="switchTab('week-7')" class="tab-btn shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 bg-sage-100 text-sage-700 hover:bg-sage-200">
+                Tuần 7
+            </button>
+        </div>
+
+        <!-- TAB CONTENT AREA -->
+        <div class="relative">
+
+            <!-- Nội dung Tuần 1 -->
+            <div id="week-1" class="tab-pane fade-in-element">
+                <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-sage-200 flex-shrink-0 flex items-center justify-center text-sage-700 shadow-sm">
+                                <i class="ph-fill ph-folder-open text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-serif text-2xl font-bold text-sage-900 mb-2">Máy tính và thiết bị ngoại vi</h2>
+                                <p class="text-sage-600 text-sm md:text-base leading-relaxed">
+                                    Trình bày cấu trúc thư mục tối ưu và quy tắc đặt tên tệp đã thiết lập, kèm hình ảnh minh họa chi tiết.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full h-[500px] md:h-[650px] rounded-xl overflow-hidden border border-sage-200 shadow-inner bg-white/50 relative">
+                            <iframe src="https://docs.google.com/document/d/1a1bxRROJELWLGB9ijrMOWQmOZiv39GdJ/preview" loading="lazy" class="w-full h-full border-none" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-3 text-right">
+                            <a href="https://docs.google.com/document/d/1a1bxRROJELWLGB9ijrMOWQmOZiv39GdJ/edit?usp=drive_link" target="_blank" class="text-sm text-sage-500 hover:text-sage-700 font-medium flex items-center justify-end gap-1 transition-colors">
+                                <i class="ph-bold ph-arrow-square-out"></i> Mở trong tab mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Tuần 2 -->
+            <div id="week-2" class="tab-pane hidden">
+                <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-sage-200 flex-shrink-0 flex items-center justify-center text-sage-700 shadow-sm">
+                                <i class="ph-fill ph-magnifying-glass text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-serif text-2xl font-bold text-sage-900 mb-2">Khai thác dữ liệu & thông tin</h2>
+                                <p class="text-sage-600 text-sm md:text-base leading-relaxed">
+                                    Áp dụng các toán tử nâng cao để tìm kiếm tài liệu học thuật và lập bảng đánh giá độ tin cậy của nguồn tin.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full h-[500px] md:h-[650px] rounded-xl overflow-hidden border border-sage-200 shadow-inner bg-white/50 relative">
+                            <iframe src="https://docs.google.com/document/d/15oQ2G4Id5ghHdU-5ZQJC7vJGGWcn9U9I/preview" loading="lazy" class="w-full h-full border-none" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-3 text-right">
+                            <a href="https://docs.google.com/document/d/15oQ2G4Id5ghHdU-5ZQJC7vJGGWcn9U9I/edit?usp=drive_link" target="_blank" class="text-sm text-sage-500 hover:text-sage-700 font-medium flex items-center justify-end gap-1 transition-colors">
+                                <i class="ph-bold ph-arrow-square-out"></i> Mở trong tab mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Tuần 3 -->
+            <div id="week-3" class="tab-pane hidden">
+                <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-sage-200 flex-shrink-0 flex items-center justify-center text-sage-700 shadow-sm">
+                                <i class="ph-fill ph-magic-wand text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-serif text-2xl font-bold text-sage-900 mb-2">Tổng quan Trí tuệ nhân tạo</h2>
+                                <p class="text-sage-600 text-sm md:text-base leading-relaxed">
+                                    Thực hành viết Prompt hiệu quả. So sánh sự khác biệt giữa Prompt ban đầu và Prompt cải tiến cùng kết quả từ AI.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full h-[500px] md:h-[650px] rounded-xl overflow-hidden border border-sage-200 shadow-inner bg-white/50 relative">
+                            <iframe src="https://docs.google.com/document/d/1RuK3OKodP017JgbrFwQFBnGr2e-M22Bx/preview" loading="lazy" class="w-full h-full border-none" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-3 text-right">
+                            <a href="https://docs.google.com/document/d/1RuK3OKodP017JgbrFwQFBnGr2e-M22Bx/edit?usp=drive_link" target="_blank" class="text-sm text-sage-500 hover:text-sage-700 font-medium flex items-center justify-end gap-1 transition-colors">
+                                <i class="ph-bold ph-arrow-square-out"></i> Mở trong tab mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Tuần 4 -->
+            <div id="week-4" class="tab-pane hidden">
+                <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-sage-200 flex-shrink-0 flex items-center justify-center text-sage-700 shadow-sm">
+                                <i class="ph-fill ph-users text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-serif text-2xl font-bold text-sage-900 mb-2">Giao tiếp & Hợp tác số</h2>
+                                <p class="text-sage-600 text-sm md:text-base leading-relaxed">
+                                    Sử dụng công cụ trực tuyến để quản lý dự án nhóm, phân chia công việc và thiết lập luồng phối hợp trực tuyến hiệu quả.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full h-[500px] md:h-[650px] rounded-xl overflow-hidden border border-sage-200 shadow-inner bg-white/50 relative">
+                            <iframe src="https://docs.google.com/document/d/1dRjbN5E1esKAt2gTr4imVEKFaEUXgand/preview" loading="lazy" class="w-full h-full border-none" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-3 text-right">
+                            <a href="https://docs.google.com/document/d/1dRjbN5E1esKAt2gTr4imVEKFaEUXgand/edit?usp=drive_link" target="_blank" class="text-sm text-sage-500 hover:text-sage-700 font-medium flex items-center justify-end gap-1 transition-colors">
+                                <i class="ph-bold ph-arrow-square-out"></i> Mở trong tab mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Tuần 5 -->
+            <div id="week-5" class="tab-pane hidden">
+                <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-sage-200 flex-shrink-0 flex items-center justify-center text-sage-700 shadow-sm">
+                                <i class="ph-fill ph-palette text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-serif text-2xl font-bold text-sage-900 mb-2">Sáng tạo nội dung số</h2>
+                                <p class="text-sage-600 text-sm md:text-base leading-relaxed">
+                                    Ứng dụng AI tạo sinh vào quá trình sáng tạo nội dung. Trưng bày sản phẩm nội dung số (hình ảnh, bài viết) được AI hỗ trợ.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full h-[500px] md:h-[650px] rounded-xl overflow-hidden border border-sage-200 shadow-inner bg-white/50 relative">
+                            <iframe src="https://docs.google.com/document/d/12I4q_OoXpcZw6ObR0Edfwo9abIqhM3gT/preview" loading="lazy" class="w-full h-full border-none" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-3 text-right">
+                            <a href="https://docs.google.com/document/d/12I4q_OoXpcZw6ObR0Edfwo9abIqhM3gT/edit?usp=drive_link" target="_blank" class="text-sm text-sage-500 hover:text-sage-700 font-medium flex items-center justify-end gap-1 transition-colors">
+                                <i class="ph-bold ph-arrow-square-out"></i> Mở trong tab mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Tuần 6 -->
+            <div id="week-6" class="tab-pane hidden">
+                <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-sage-200 flex-shrink-0 flex items-center justify-center text-sage-700 shadow-sm">
+                                <i class="ph-fill ph-shield-check text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-serif text-2xl font-bold text-sage-900 mb-2">An toàn & Liêm chính học thuật</h2>
+                                <p class="text-sage-600 text-sm md:text-base leading-relaxed">
+                                    Xây dựng bộ nguyên tắc cá nhân về việc sử dụng AI có trách nhiệm dựa trên các nghiên cứu và phân tích các vấn đề đạo đức.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full h-[500px] md:h-[650px] rounded-xl overflow-hidden border border-sage-200 shadow-inner bg-white/50 relative">
+                            <iframe src="https://docs.google.com/document/d/1rwZG59lF-I5WFNHJZ-0RkLAB7TM59mGU/preview" loading="lazy" class="w-full h-full border-none" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-3 text-right">
+                            <a href="https://docs.google.com/document/d/1rwZG59lF-I5WFNHJZ-0RkLAB7TM59mGU/edit?usp=drive_link" target="_blank" class="text-sm text-sage-500 hover:text-sage-700 font-medium flex items-center justify-end gap-1 transition-colors">
+                                <i class="ph-bold ph-arrow-square-out"></i> Mở trong tab mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nội dung Tuần 7 -->
+            <div id="week-7" class="tab-pane hidden">
+                <div class="glass-card rounded-3xl p-6 md:p-10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-sage-100 rounded-full opacity-50 z-0 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-sage-200 flex-shrink-0 flex items-center justify-center text-sage-700 shadow-sm">
+                                <i class="ph-fill ph-star text-3xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="font-serif text-2xl font-bold text-sage-900 mb-2">Dự án cuối khóa</h2>
+                                <p class="text-sage-600 text-sm md:text-base leading-relaxed">
+                                    Hệ thống hóa toàn bộ kiến thức, tinh chỉnh các bài tập và hoàn thiện bản nháp cuối cùng cho Digital Portfolio.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full h-[500px] md:h-[650px] rounded-xl overflow-hidden border border-sage-200 shadow-inner bg-white/50 relative">
+                            <iframe src="https://docs.google.com/document/d/1_6i7NhuUwmoeFRzgQTAI0E510FPSFG7M/preview" loading="lazy" class="w-full h-full border-none" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-3 text-right">
+                            <a href="https://docs.google.com/document/d/1_6i7NhuUwmoeFRzgQTAI0E510FPSFG7M/edit?usp=drive_link" target="_blank" class="text-sm text-sage-500 hover:text-sage-700 font-medium flex items-center justify-end gap-1 transition-colors">
+                                <i class="ph-bold ph-arrow-square-out"></i> Mở trong tab mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center text-sage-600 text-sm border-t border-sage-200 mt-auto bg-sand/50 backdrop-blur-sm">
+        <p>&copy; 2026 Phạm Thanh Tuấn. Thiết kế cho môn học Công nghệ số.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Hiệu ứng thanh điều hướng chính khi cuộn trang
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-sm', 'bg-white/80');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('shadow-sm', 'bg-white/80');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Hàm chuyển đổi Tab
+        function switchTab(weekId) {
+            // 1. Ẩn tất cả các nội dung (Tab Panes)
+            const allPanes = document.querySelectorAll('.tab-pane');
+            allPanes.forEach(pane => {
+                pane.classList.add('hidden');
+                pane.classList.remove('fade-in-element'); // Reset hiệu ứng xuất hiện
+            });
+            
+            // 2. Hiển thị nội dung được chọn
+            const activePane = document.getElementById(weekId);
+            activePane.classList.remove('hidden');
+            
+            // Ép trình duyệt reflow để kích hoạt lại animation
+            void activePane.offsetWidth;
+            activePane.classList.add('fade-in-element');
+
+            // 3. Reset giao diện của tất cả các nút (Tab Buttons)
+            const allBtns = document.querySelectorAll('.tab-btn');
+            allBtns.forEach(btn => {
+                // Xóa trạng thái active
+                btn.classList.remove('bg-sage-600', 'text-white', 'shadow-md', 'scale-105');
+                // Thêm trạng thái inactive
+                btn.classList.add('bg-sage-100', 'text-sage-700', 'hover:bg-sage-200');
+            });
+
+            // 4. Áp dụng giao diện active cho nút được bấm
+            const activeBtn = document.getElementById('btn-' + weekId);
+            activeBtn.classList.remove('bg-sage-100', 'text-sage-700', 'hover:bg-sage-200');
+            activeBtn.classList.add('bg-sage-600', 'text-white', 'shadow-md', 'scale-105');
+        }
+    </script>
+</body>
+</html>

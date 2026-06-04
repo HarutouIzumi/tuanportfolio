@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu | Portfolio - Phạm Thanh Tuấn</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Nunito (cho sự dễ thương/tròn trịa) và Lora (cho vibe aesthetic) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sage-50': '#f4f7f4',
+                        'sage-100': '#e3ebe3',
+                        'sage-200': '#c8dbc8',
+                        'sage-300': '#a3c2a3',
+                        'sage-400': '#7da57d',
+                        'sage-500': '#5c855c',
+                        'sage-600': '#456945',
+                        'sage-700': '#385438',
+                        'sage-800': '#2f442f',
+                        'sage-900': '#273827',
+                        'earth': '#8C7A6B',
+                        'sand': '#FDFBF7'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2f442f;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(253, 251, 247, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(227, 235, 227, 0.8);
+            box-shadow: 0 10px 30px rgba(92, 133, 92, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(92, 133, 92, 0.15);
+            border-color: #a3c2a3;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes float-reverse {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(20px) rotate(-5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
+        }
+
+        .animate-float-1 { animation: float 6s ease-in-out infinite; }
+        .animate-float-2 { animation: float-reverse 8s ease-in-out infinite; }
+        .animate-float-3 { animation: float 7s ease-in-out infinite 1s; }
+        
+        .fade-in-element {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        /* Icon bounce on hover */
+        .hobby-card:hover i {
+            animation: sway 1s ease-in-out infinite;
+            color: #5c855c;
+        }
+
+        /* Decorative background blobs */
+        .blob-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(163,194,163,0.3) 0%, rgba(253,251,247,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+        
+        .blob-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(200,219,200,0.4) 0%, rgba(253,251,247,0) 70%);
+            z-index: -1;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col font-sans selection:bg-sage-300 selection:text-sage-900">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="blob-1 animate-float-1"></div>
+        <div class="blob-2 animate-float-2"></div>
+        
+        <!-- Floating Leaves SVG -->
+        <svg class="absolute top-20 left-20 w-12 h-12 text-sage-300 opacity-60 animate-float-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.5,3C13.53,3 10.38,5.77 9.24,9.45C9.06,9.35 8.84,9.28 8.6,9.28C7.5,9.28 6.6,10.18 6.6,11.28C6.6,11.83 6.82,12.33 7.18,12.69L4.44,15.43L5.85,16.84L8.6,14.1C8.95,14.46 9.45,14.68 10,14.68C11.1,14.68 12,13.78 12,12.68C12,12.44 11.93,12.22 11.83,12.04C15.5,10.9 18.28,7.75 18.28,3.78L17.5,3M15.54,5.43C15.44,8.12 13.56,10.37 11.05,11.1C11.64,10.11 12,8.96 12,7.75C12,6.97 11.89,6.21 11.68,5.5C12.86,5.1 14.16,5 15.54,5.43Z" />
+        </svg>
+        <svg class="absolute top-1/3 right-1/4 w-8 h-8 text-sage-400 opacity-50 animate-float-3" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21.4,11.6C21.4,11.6 20.3,5.3 14,5.3C14,5.3 13.1,4 11.6,4C10.1,4 9.2,5.3 9.2,5.3C2.9,5.3 1.8,11.6 1.8,11.6C1.8,11.6 2.5,14 5,14.6C6.1,14.8 7.2,14.5 8.1,13.8L11.6,17.4L15.1,13.8C16,14.5 17.1,14.8 18.2,14.6C20.7,14 21.4,11.6 21.4,11.6Z" />
+        </svg>
+        <svg class="absolute bottom-1/4 left-1/3 w-10 h-10 text-sage-200 opacity-70 animate-float-2" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,7V13L16.2,16.1L17,14.6L12.5,11.9V7H11Z" />
+        </svg>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <i class="ph-fill ph-plant text-3xl text-sage-600 group-hover:text-sage-400 transition-colors"></i>
+                    <span class="font-serif font-semibold text-xl text-sage-800 tracking-wide">Tuan's Space</span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                   <a href="index.html" class="text-sage-700 font-semibold border-b-2 border-sage-500 pb-1">Giới thiệu</a>
+                    <a href="projects.html" class="text-sage-500 hover:text-sage-700 font-medium transition-colors hover:border-b-2 hover:border-sage-300 pb-1">Dự án</a>
+                    <a href="#" class="text-sage-500 hover:text-sage-700 font-medium transition-colors hover:border-b-2 hover:border-sage-300 pb-1">Tổng kết</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-sage-700 hover:text-sage-900 focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-28 pb-20 px-6 lg:px-8 max-w-6xl mx-auto w-full flex flex-col md:flex-row items-center justify-center gap-12 min-h-[90vh]">
+        
+        <!-- Left Column: Image & Greeting -->
+        <div class="w-full md:w-5/12 flex flex-col items-center text-center fade-in-element">
+            <div class="relative w-64 h-64 md:w-80 md:h-80 mb-8">
+                <!-- Decorative rings around image -->
+                <div class="absolute inset-0 rounded-full border-2 border-sage-200 animate-[spin_15s_linear_infinite] pointer-events-none"></div>
+                <div class="absolute inset-2 rounded-full border border-sage-300 border-dashed animate-[spin_20s_linear_infinite_reverse] pointer-events-none"></div>
+                
+                <!-- Avatar (Placeholder with cute nature aesthetic) -->
+                <div class="absolute inset-4 rounded-full overflow-hidden border-4 border-white shadow-xl bg-sage-100 flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=600&auto=format&fit=crop" 
+                         alt="Phạm Thanh Tuấn" 
+                         class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                         onerror="this.src='https://ui-avatars.com/api/?name=Thanh+Tuan&background=c8dbc8&color=2f442f&size=300&font-size=0.33'">
+                </div>
+                
+                <!-- Small floating badge -->
+                <div class="absolute bottom-4 right-4 bg-white rounded-full p-3 shadow-lg animate-float-1 z-10 border border-sage-100">
+                    <i class="ph-fill ph-leaf text-2xl text-sage-500"></i>
+                </div>
+            </div>
+
+            <span class="px-4 py-1.5 rounded-full bg-sage-100 text-sage-700 text-sm font-bold tracking-wider mb-4 border border-sage-200">
+                HELLO WORLD 🌱
+            </span>
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-sage-900 mb-2">Phạm Thanh Tuấn</h1>
+            <p class="text-sage-600 text-lg font-medium">Khám phá thế giới công nghệ số</p>
+        </div>
+
+        <!-- Right Column: Info Cards -->
+        <div class="w-full md:w-7/12 flex flex-col gap-6">
+            
+            <!-- About Me Card -->
+            <div class="glass-card rounded-3xl p-8 fade-in-element delay-100">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-sage-200 flex items-center justify-center">
+                        <i class="ph-fill ph-student text-sage-700 text-xl"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-sage-800">Thông tin sinh viên</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 text-sage-800">
+                    <div class="flex flex-col">
+                        <span class="text-sm text-sage-500 font-semibold mb-1">Mã sinh viên</span>
+                        <span class="font-bold text-lg">25023387</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm text-sage-500 font-semibold mb-1">Chuyên ngành</span>
+                        <span class="font-bold text-lg">Hệ thống thông tin</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm text-sage-500 font-semibold mb-1">Trường học</span>
+                        <span class="font-bold text-lg">Đại học Công nghệ - ĐHQGHN</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm text-sage-500 font-semibold mb-1">Lớp học phần</span>
+                        <span class="font-bold text-lg">VNU1001_E252014</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portfolio Goal Card -->
+            <div class="glass-card rounded-3xl p-8 fade-in-element delay-200">
+                 <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-full bg-sage-200 flex items-center justify-center">
+                        <i class="ph-fill ph-target text-sage-700 text-xl"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl font-bold text-sage-800">Mục tiêu dự án</h2>
+                </div>
+                <p class="text-sage-700 leading-relaxed">
+                    Digital Portfolio này được xây dựng để tổng hợp, lưu giữ và giới thiệu các sản phẩm, kỹ năng số mình đã tích lũy được trong môn học <b>Nhập môn Công nghệ số và Ứng dụng AI</b>. Mình hy vọng đây không chỉ là một bài tập mà còn là góc nhỏ thể hiện tư duy sáng tạo của bản thân.
+                </p>
+            </div>
+
+            <!-- Hobbies Grid -->
+            <div class="grid grid-cols-2 gap-4 fade-in-element delay-300">
+                <div class="glass-card hobby-card rounded-2xl p-5 flex flex-col items-center justify-center text-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-code text-4xl text-sage-400 transition-colors"></i>
+                    <span class="font-bold text-sage-800">Lập trình<br>sáng tạo</span>
+                </div>
+                <div class="glass-card hobby-card rounded-2xl p-5 flex flex-col items-center justify-center text-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-camera text-4xl text-sage-400 transition-colors"></i>
+                    <span class="font-bold text-sage-800">Nhiếp ảnh<br>thiên nhiên</span>
+                </div>
+                <div class="glass-card hobby-card rounded-2xl p-5 flex flex-col items-center justify-center text-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-headphones text-4xl text-sage-400 transition-colors"></i>
+                    <span class="font-bold text-sage-800">Nghe nhạc<br>Acoustic/Indie</span>
+                </div>
+                <div class="glass-card hobby-card rounded-2xl p-5 flex flex-col items-center justify-center text-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-book-open-text text-4xl text-sage-400 transition-colors"></i>
+                    <span class="font-bold text-sage-800">Đọc sách<br>phát triển</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 text-center text-sage-600 text-sm border-t border-sage-200 mt-auto bg-sand/50 backdrop-blur-sm">
+        <p>&copy; 2026 Phạm Thanh Tuấn. Thiết kế cho môn học Công nghệ số.</p>
+    </footer>
+
+    <!-- Simple script for scroll effect on navbar -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-sm', 'bg-white/80');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('shadow-sm', 'bg-white/80');
+                nav.classList.add('bg-transparent');
+            }
+        });
+    </script>
+</body>
+</html>
